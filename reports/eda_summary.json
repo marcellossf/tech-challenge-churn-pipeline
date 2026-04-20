@@ -1,0 +1,111 @@
+{
+  "raw_shape": {
+    "rows": 7043,
+    "columns": 21
+  },
+  "modeling_shape": {
+    "rows": 7043,
+    "columns": 20
+  },
+  "missing_total_charges": 11,
+  "raw_duplicate_rows": 0,
+  "modeling_duplicate_rows": 22,
+  "churn_distribution_pct": {
+    "No": 73.46,
+    "Yes": 26.54
+  },
+  "numeric_summary": {
+    "tenure": {
+      "count": 7043.0,
+      "mean": 32.37,
+      "std": 24.56,
+      "min": 0.0,
+      "25%": 9.0,
+      "50%": 29.0,
+      "75%": 55.0,
+      "max": 72.0
+    },
+    "MonthlyCharges": {
+      "count": 7043.0,
+      "mean": 64.76,
+      "std": 30.09,
+      "min": 18.25,
+      "25%": 35.5,
+      "50%": 70.35,
+      "75%": 89.85,
+      "max": 118.75
+    },
+    "TotalCharges": {
+      "count": 7032.0,
+      "mean": 2283.3,
+      "std": 2266.77,
+      "min": 18.8,
+      "25%": 401.45,
+      "50%": 1397.48,
+      "75%": 3794.74,
+      "max": 8684.8
+    }
+  },
+  "contract_churn": [
+    {
+      "Contract": "Month-to-month",
+      "churn_rate": 0.4270967741935484,
+      "churn_rate_pct": 42.71
+    },
+    {
+      "Contract": "One year",
+      "churn_rate": 0.11269517990495587,
+      "churn_rate_pct": 11.27
+    },
+    {
+      "Contract": "Two year",
+      "churn_rate": 0.02831858407079646,
+      "churn_rate_pct": 2.83
+    }
+  ],
+  "internet_service_churn": [
+    {
+      "InternetService": "Fiber optic",
+      "churn_rate": 0.4189276485788114,
+      "churn_rate_pct": 41.89
+    },
+    {
+      "InternetService": "DSL",
+      "churn_rate": 0.1895910780669145,
+      "churn_rate_pct": 18.96
+    },
+    {
+      "InternetService": "No",
+      "churn_rate": 0.07404980340760157,
+      "churn_rate_pct": 7.4
+    }
+  ],
+  "payment_method_churn": [
+    {
+      "PaymentMethod": "Electronic check",
+      "churn_rate": 0.4528541226215645,
+      "churn_rate_pct": 45.29
+    },
+    {
+      "PaymentMethod": "Mailed check",
+      "churn_rate": 0.19106699751861042,
+      "churn_rate_pct": 19.11
+    },
+    {
+      "PaymentMethod": "Bank transfer (automatic)",
+      "churn_rate": 0.16709844559585493,
+      "churn_rate_pct": 16.71
+    },
+    {
+      "PaymentMethod": "Credit card (automatic)",
+      "churn_rate": 0.15243101182654403,
+      "churn_rate_pct": 15.24
+    }
+  ],
+  "artifacts": {
+    "numeric_distributions": "C:\\Tech Challenge\\reports\\eda_numeric_distributions.png",
+    "contract_churn": "C:\\Tech Challenge\\reports\\eda_contract_churn.png",
+    "payment_churn": "C:\\Tech Challenge\\reports\\eda_payment_churn.png",
+    "internet_churn": "C:\\Tech Challenge\\reports\\eda_internet_churn.png"
+  }
+}
