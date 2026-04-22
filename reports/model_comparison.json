@@ -1,0 +1,46 @@
+[
+  {
+    "model": "mlp_pytorch",
+    "pr_auc": 0.6347822617789789,
+    "roc_auc": 0.8428634167764604,
+    "f1": 0.5985915492957746,
+    "recall": 0.9090909090909091,
+    "precision": 0.4461942257217848,
+    "expected_cost_at_threshold": 15240.0,
+    "best_threshold_by_cost": 0.25000000000000006,
+    "best_expected_cost": 13780.0
+  },
+  {
+    "model": "logistic_regression",
+    "pr_auc": 0.6334285922,
+    "roc_auc": 0.8418610659,
+    "f1": 0.6146682189,
+    "recall": 0.7058823529,
+    "precision": 0.5443298969,
+    "expected_cost_at_threshold": 26420.0,
+    "best_threshold_by_cost": 0.1,
+    "best_expected_cost": 14380.0
+  },
+  {
+    "model": "random_forest",
+    "pr_auc": 0.605468372,
+    "roc_auc": 0.8171316748,
+    "f1": 0.5878136201,
+    "recall": 0.6577540107,
+    "precision": 0.5313174946,
+    "expected_cost_at_threshold": 29880.0,
+    "best_threshold_by_cost": 0.1,
+    "best_expected_cost": 17060.0
+  },
+  {
+    "model": "dummy",
+    "pr_auc": 0.2654364798,
+    "roc_auc": 0.5,
+    "f1": 0.0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "expected_cost_at_threshold": 74800.0,
+    "best_threshold_by_cost": 0.1,
+    "best_expected_cost": 20700.0
+  }
+]
