@@ -8,10 +8,10 @@
       :root {
         --ink: #101217;
         --muted: #aeb8c6;
-        --paper: #02060d;
+        --paper: #0b111a;
         --white: #ffffff;
         --line: rgba(219, 229, 242, 0.2);
-        --deep: #02060d;
+        --deep: #0b111a;
         --teal: #00a88f;
         --blue: #1c5fd4;
         --amber: #c47b16;
@@ -19,7 +19,7 @@
         --soft-blue: #eaf0fb;
         --soft-amber: #fff4df;
         --radius: 8px;
-        --shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+        --shadow: 0 22px 70px rgba(0, 0, 0, 0.26);
       }
 
       * {
@@ -50,9 +50,8 @@
         display: none;
         overflow: hidden;
         background:
-          radial-gradient(circle at 70% 18%, rgba(0, 168, 143, 0.16), transparent 28%),
-          radial-gradient(circle at 18% 72%, rgba(196, 123, 22, 0.13), transparent 24%),
-          linear-gradient(135deg, #01040a 0%, #07111c 52%, #02050a 100%);
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
+          linear-gradient(135deg, #0d141f 0%, #090f17 50%, #0b111a 100%);
         color: var(--white);
       }
 
@@ -61,16 +60,19 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(115deg, transparent 0 18%, rgba(0, 168, 143, 0.11) 18.15%, transparent 18.4% 42%, rgba(28, 95, 212, 0.1) 42.15%, transparent 42.4% 100%),
-          linear-gradient(25deg, transparent 0 28%, rgba(196, 123, 22, 0.1) 28.15%, transparent 28.4% 62%, rgba(255, 255, 255, 0.07) 62.15%, transparent 62.4% 100%);
-        opacity: 0.6;
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+        background-size: 72px 72px;
+        opacity: 0.42;
       }
 
       .slide::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.64));
+        background:
+          radial-gradient(circle at 74% 22%, rgba(0, 168, 143, 0.09), transparent 30%),
+          linear-gradient(180deg, rgba(5, 9, 14, 0.1), rgba(5, 9, 14, 0.42));
       }
 
       .slide.active {
@@ -79,9 +81,8 @@
 
       .slide.dark {
         background:
-          radial-gradient(circle at 70% 18%, rgba(0, 168, 143, 0.18), transparent 28%),
-          radial-gradient(circle at 18% 72%, rgba(196, 123, 22, 0.16), transparent 24%),
-          linear-gradient(135deg, #01040a 0%, #07111c 52%, #02050a 100%);
+          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
+          linear-gradient(135deg, #0d141f 0%, #090f17 50%, #0b111a 100%);
         color: var(--white);
       }
 
@@ -90,7 +91,7 @@
         inset: 0;
         width: 100%;
         height: 100%;
-        opacity: 0.7;
+        opacity: 0.24;
       }
 
       .brand {
@@ -108,12 +109,13 @@
       .slide-inner {
         position: relative;
         z-index: 2;
-        width: min(1180px, calc(100vw - 88px));
-        height: calc(100vh - 110px);
+        width: min(2860px, calc(100vw - 180px));
+        height: calc(100vh - 132px);
         margin: auto;
         display: grid;
-        grid-template-rows: auto 1fr auto;
-        gap: 24px;
+        grid-template-rows: auto auto auto;
+        align-content: center;
+        gap: 34px;
       }
 
       .cover .slide-inner {
@@ -146,8 +148,8 @@
 
       h2 {
         color: var(--white);
-        font-size: clamp(2.25rem, 5vw, 4.6rem);
-        line-height: 1.02;
+        font-size: clamp(3.2rem, 3.2vw, 6.2rem);
+        line-height: 1.04;
       }
 
       .subtitle {
@@ -167,8 +169,8 @@
 
       .content {
         display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(330px, 0.78fr);
-        gap: 30px;
+        grid-template-columns: minmax(0, 1.28fr) minmax(560px, 0.72fr);
+        gap: 72px;
         align-items: start;
         min-height: 0;
       }
@@ -177,9 +179,22 @@
         grid-template-columns: 1fr;
       }
 
+      .stack {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 28px;
+      }
+
+      .result-layout {
+        display: grid;
+        grid-template-rows: auto auto;
+        align-content: center;
+        gap: 44px;
+      }
+
       .body-text {
         color: #e8edf3;
-        font-size: 1.25rem;
+        font-size: clamp(1.2rem, 0.9vw, 1.58rem);
         line-height: 1.58;
       }
 
@@ -193,14 +208,20 @@
       .visual {
         border: 1px solid var(--line);
         border-radius: var(--radius);
-        background: rgba(5, 12, 22, 0.82);
+        background: rgba(18, 27, 39, 0.78);
         box-shadow: var(--shadow);
         color: var(--white);
         backdrop-filter: blur(12px);
       }
 
       .note {
-        padding: 22px;
+        align-self: start;
+        display: grid;
+        align-content: center;
+      }
+
+      .note {
+        padding: 28px 30px;
         border-left: 5px solid var(--teal);
       }
 
@@ -216,17 +237,19 @@
       .note p {
         margin: 0;
         color: #eef4f7;
-        font-size: 1.04rem;
-        line-height: 1.55;
+        font-size: clamp(1.08rem, 0.78vw, 1.3rem);
+        line-height: 1.5;
       }
 
       .panel {
-        padding: 22px;
+        padding: 28px 30px;
+        display: grid;
+        align-content: center;
       }
 
       .panel h3 {
         margin: 0 0 12px;
-        font-size: 1.15rem;
+        font-size: clamp(1.12rem, 0.82vw, 1.38rem);
       }
 
       .panel ul {
@@ -235,8 +258,8 @@
       }
 
       .panel li {
-        margin: 0 0 10px;
-        font-size: 1rem;
+        margin: 0 0 8px;
+        font-size: clamp(1rem, 0.72vw, 1.18rem);
       }
 
       .links {
@@ -249,7 +272,7 @@
         justify-content: space-between;
         gap: 16px;
         align-items: center;
-        padding: 12px 14px;
+        padding: 16px 18px;
         border: 1px solid rgba(219, 229, 242, 0.22);
         border-radius: var(--radius);
         background: rgba(255, 255, 255, 0.08);
@@ -272,7 +295,7 @@
       }
 
       .tag {
-        padding: 8px 12px;
+        padding: 10px 15px;
         border: 1px solid rgba(219, 229, 242, 0.26);
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.08);
@@ -298,17 +321,20 @@
       .metrics {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
+        gap: 22px;
       }
 
       .metric {
-        padding: 20px;
+        min-height: clamp(160px, 12vh, 220px);
+        padding: 28px 30px;
+        display: grid;
+        align-content: center;
       }
 
       .metric strong {
         display: block;
         margin-bottom: 8px;
-        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-size: clamp(2.8rem, 2.45vw, 5.2rem);
         line-height: 1;
       }
 
@@ -324,7 +350,7 @@
       .visual img {
         display: block;
         width: 100%;
-        max-height: 330px;
+        max-height: 520px;
         object-fit: contain;
         padding: 10px;
         background: #ffffff;
@@ -348,10 +374,10 @@
 
       th,
       td {
-        padding: 14px 16px;
+        padding: 22px 28px;
         border-bottom: 1px solid var(--line);
         text-align: left;
-        font-size: 1rem;
+        font-size: clamp(1.1rem, 0.72vw, 1.28rem);
       }
 
       th {
@@ -369,8 +395,15 @@
         justify-content: space-between;
         gap: 20px;
         color: #c7d0dc;
-        font-size: 0.95rem;
+        font-size: clamp(1rem, 0.62vw, 1.15rem);
         font-weight: 700;
+      }
+
+      .footer span:first-child {
+        max-width: 72%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .controls {
@@ -480,29 +513,31 @@
           <div></div>
           <div>
             <p class="eyebrow">Tech Challenge - Fase 01</p>
-            <h1>Churn Prediction Pipeline</h1>
-            <p class="subtitle">Rede neural em PyTorch, baselines, MLflow, FastAPI, testes e documentação para apoiar retenção de clientes em telecom.</p>
+            <h1>Previsão de Churn</h1>
+            <p class="subtitle">Um projeto completo para identificar clientes com risco de cancelamento e apoiar ações de retenção em telecom.</p>
             <div class="rule"></div>
           </div>
           <div class="footer" style="color: #dce7ea">
             <span>Marcello</span>
-            <span>Vídeo STAR - até 5 minutos</span>
+            <span>Vídeo de apresentação - até 5 minutos</span>
           </div>
         </div>
       </section>
 
-      <section class="slide" data-title="Situation">
+      <section class="slide" data-title="Contexto">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Situation</p>
+            <p class="eyebrow">Contexto</p>
             <h2>Problema de negócio</h2>
           </header>
           <div class="content">
-            <div class="body-text">
+            <div class="body-text stack">
+              <div>
               <p>Uma operadora de telecom precisa identificar clientes com maior risco de cancelamento para priorizar ações de retenção.</p>
               <p>O dataset escolhido foi o Telco Customer Churn, com 7.043 registros e 21 colunas na base bruta. A variável alvo é <strong>Churn</strong>.</p>
+              </div>
               <div class="tag-list">
-                <span class="tag teal">Target: Churn</span>
+                <span class="tag teal">Alvo: Churn</span>
                 <span class="tag blue">7.043 registros</span>
                 <span class="tag amber">21 colunas</span>
                 <span class="tag">Classificação binária</span>
@@ -510,24 +545,24 @@
             </div>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>O projeto começa com um problema de negócio: entender quais clientes têm mais chance de cancelar. A ideia é usar o modelo para apoiar retenção, não para tomar decisão automática contra o cliente.</p>
+              <p>O projeto começa com uma pergunta simples: quais clientes têm mais chance de cancelar? A ideia é usar o modelo para ajudar a empresa a agir antes, com campanhas de retenção mais bem direcionadas.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Mostre: README - objetivo e dataset</span>
-            <span>1 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
 
-      <section class="slide" data-title="Task">
+      <section class="slide" data-title="Objetivo">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Task</p>
-            <h2>Pipeline profissional end-to-end</h2>
+            <p class="eyebrow">Objetivo</p>
+            <h2>Construir o projeto de ponta a ponta</h2>
           </header>
           <div class="content">
-            <div>
+            <div class="stack">
               <div class="metrics">
                 <div class="metric">
                   <strong>PR-AUC</strong>
@@ -539,26 +574,26 @@
                 </div>
                 <div class="metric">
                   <strong>0.25</strong>
-                  <span>Threshold operacional</span>
+                  <span>Ponto de corte escolhido</span>
                 </div>
               </div>
-              <div class="panel" style="margin-top: 18px">
+              <div class="panel">
                 <h3>Escopo entregue</h3>
                 <ul>
-                  <li>EDA, ML Canvas e baselines.</li>
-                  <li>MLP em PyTorch com early stopping.</li>
-                  <li>MLflow, FastAPI, testes e documentação.</li>
+                  <li>Análise dos dados, ML Canvas e modelos de comparação.</li>
+                  <li>Rede neural em PyTorch com parada antecipada.</li>
+                  <li>Registro dos experimentos, API, testes e documentação.</li>
                 </ul>
               </div>
             </div>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>A tarefa foi construir uma solução completa e reproduzível. A métrica principal foi PR-AUC, porque o foco é identificar bem a classe positiva, que são os clientes com churn.</p>
+              <p>O objetivo foi montar uma solução completa e reproduzível. A métrica principal foi PR-AUC, porque aqui o mais importante é identificar bem os clientes com risco de churn.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Mostre: estrutura do repo e README</span>
-            <span>2 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
@@ -566,13 +601,15 @@
       <section class="slide" data-title="EDA">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Action</p>
+            <p class="eyebrow">O que foi feito</p>
             <h2>EDA e sinais de churn</h2>
           </header>
           <div class="content">
-            <div class="body-text">
-              <p>Na EDA, foram analisados tipos das colunas, valores ausentes, duplicados, distribuição da target e variáveis importantes.</p>
+            <div class="body-text stack">
+              <div>
+              <p>Na análise inicial, eu olhei os tipos das colunas, valores ausentes, duplicados, distribuição do churn e variáveis importantes.</p>
               <p>Foram tratados <strong>TotalCharges</strong>, que vinha como texto, e <strong>customerID</strong>, removido da modelagem por ser apenas identificador.</p>
+              </div>
               <div class="panel">
                 <h3>Sinais fortes</h3>
                 <ul>
@@ -589,38 +626,40 @@
           </div>
           <footer class="footer">
             <span>Depois abra: notebooks/01_eda_baselines.ipynb ou reports/</span>
-            <span>3 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
 
-      <section class="slide" data-title="Baselines">
+      <section class="slide" data-title="Modelos de comparação">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Action</p>
-            <h2>Baselines e MLflow</h2>
+            <p class="eyebrow">O que foi feito</p>
+            <h2>Modelos de comparação</h2>
           </header>
           <div class="content">
-            <div class="body-text">
-              <p>Os baselines foram <strong>DummyClassifier</strong>, <strong>LogisticRegression</strong> e <strong>RandomForestClassifier</strong>.</p>
-              <p>O preprocessamento usa imputação, padronização de numéricas, one-hot encoding para categóricas, seed fixa e validação cruzada estratificada.</p>
+            <div class="body-text stack">
+              <div>
+              <p>Antes da rede neural, eu treinei modelos de comparação: <strong>DummyClassifier</strong>, <strong>LogisticRegression</strong> e <strong>RandomForestClassifier</strong>.</p>
+              <p>O tratamento dos dados usa preenchimento de valores, padronização de variáveis numéricas, codificação das categóricas, seed fixa e validação estratificada.</p>
+              </div>
               <div class="panel">
                 <h3>Por que isso importa?</h3>
                 <ul>
-                  <li>Cria comparação justa antes da MLP.</li>
-                  <li>Evita defender rede neural sem referência.</li>
-                  <li>Deixa o experimento auditável com MLflow.</li>
+                  <li>Cria uma comparação justa antes da rede neural.</li>
+                  <li>Evita defender um modelo mais complexo sem referência.</li>
+                  <li>Deixa os experimentos registrados no MLflow.</li>
                 </ul>
               </div>
             </div>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>Antes de defender a rede neural, eu precisava saber se ela realmente agregava valor. Por isso os baselines são importantes: eles colocam a MLP em comparação com modelos mais simples.</p>
+              <p>Antes de defender a rede neural, eu precisava ver se ela realmente fazia sentido. Por isso esses modelos de comparação são importantes: eles mostram se a MLP trouxe algum ganho de verdade.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Depois abra: src/tech_challenge/models/train_baselines.py</span>
-            <span>4 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
@@ -628,38 +667,38 @@
       <section class="slide" data-title="MLP">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Action</p>
-            <h2>MLP em PyTorch</h2>
+            <p class="eyebrow">O que foi feito</p>
+            <h2>Rede neural em PyTorch</h2>
           </header>
           <div class="content">
-            <div>
+            <div class="stack">
               <div class="metrics">
                 <div class="metric">
                   <strong>64</strong>
-                  <span>1a camada oculta</span>
+                  <span>Primeira camada</span>
                 </div>
                 <div class="metric">
                   <strong>32</strong>
-                  <span>2a camada oculta</span>
+                  <span>Segunda camada</span>
                 </div>
                 <div class="metric">
                   <strong>0.2</strong>
                   <span>Dropout</span>
                 </div>
               </div>
-              <figure class="visual" style="margin: 18px 0 0">
+              <figure class="visual" style="margin: 0">
                 <img src="../reports/mlp_artifacts/training_history.png" alt="Histórico de treino da MLP" />
                 <figcaption>Histórico de treino da MLP</figcaption>
               </figure>
             </div>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>A MLP tem duas camadas ocultas, ReLU, dropout e BCEWithLogitsLoss com ponderação da classe positiva. O treino usa batching e early stopping para reduzir risco de overfitting.</p>
+              <p>A rede neural tem duas camadas principais, usa ReLU, dropout e uma função de erro adequada para classificação binária. O treino foi feito em lotes e com parada antecipada para evitar treinar além do necessário.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Depois abra: src/tech_challenge/models/mlp.py e train_mlp.py</span>
-            <span>5 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
@@ -667,10 +706,10 @@
       <section class="slide" data-title="Resultados">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Result</p>
+            <p class="eyebrow">Resultado</p>
             <h2>Resultados e custo</h2>
           </header>
-          <div class="content single">
+          <div class="content single result-layout">
             <table>
               <thead>
                 <tr>
@@ -707,12 +746,12 @@
             </table>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>A regressão logística foi forte, mas a MLP ficou levemente melhor em PR-AUC e ROC-AUC. A decisão final veio da análise de custo: no threshold 0.25, a MLP teve o menor custo esperado.</p>
+              <p>A regressão logística foi bem forte, mas a MLP ficou um pouco melhor nas métricas principais. O que decidiu mesmo foi o custo: usando o ponto de corte 0.25, a MLP teve o menor custo esperado.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Depois abra: reports/model_comparison.md e docs/business_cost_analysis.md</span>
-            <span>6 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
@@ -720,11 +759,11 @@
       <section class="slide" data-title="API">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Action</p>
+            <p class="eyebrow">O que foi feito</p>
             <h2>API, testes e documentação</h2>
           </header>
           <div class="content">
-            <div>
+            <div class="stack">
               <div class="metrics">
                 <div class="metric">
                   <strong>/health</strong>
@@ -739,23 +778,23 @@
                   <span>Testes</span>
                 </div>
               </div>
-              <div class="panel" style="margin-top: 18px">
+              <div class="panel">
                 <h3>Documentos finais</h3>
                 <ul>
                   <li>README, Model Card e ML Canvas.</li>
-                  <li>Análise de custo e arquitetura de deploy.</li>
+                  <li>Análise de custo e arquitetura de publicação da API.</li>
                   <li>Plano de monitoramento e roteiro do vídeo.</li>
                 </ul>
               </div>
             </div>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>A API usa FastAPI, valida entrada com Pydantic, carrega o mesmo preprocessador do treino e retorna probabilidade, classe, threshold e versão do modelo. Também tem testes automatizados e logging estruturado.</p>
+              <p>A API usa FastAPI, valida a entrada, carrega o mesmo tratamento de dados usado no treino e retorna probabilidade, classe, ponto de corte e versão do modelo. Também tem testes automatizados e logs estruturados.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Depois abra: src/tech_challenge/api/app.py e terminal com pytest</span>
-            <span>7 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
@@ -763,30 +802,32 @@
       <section class="slide" data-title="Fechamento">
         <div class="slide-inner">
           <header>
-            <p class="eyebrow">Result</p>
+            <p class="eyebrow">Fechamento</p>
             <h2>Fechamento</h2>
           </header>
           <div class="content">
-            <div class="body-text">
-              <p>O projeto entrega um fluxo completo: análise dos dados, baselines, MLP em PyTorch, MLflow, API FastAPI, testes automatizados e documentação.</p>
+            <div class="body-text stack">
+              <div>
+              <p>O projeto entrega um fluxo completo: análise dos dados, modelos de comparação, rede neural em PyTorch, registro de experimentos, API, testes automatizados e documentação.</p>
               <p>A escolha da MLP foi baseada não só em métrica técnica, mas também no menor custo esperado para o problema de churn.</p>
+              </div>
               <div class="panel">
                 <h3>Limitações e próximos passos</h3>
                 <ul>
                   <li>Custo de negócio ainda é hipótese.</li>
                   <li>Não houve validação temporal.</li>
-                  <li>Próximo passo: deploy, monitoramento e retreino periódico.</li>
+                  <li>Próximo passo: publicar a API, monitorar e retreinar periodicamente.</li>
                 </ul>
               </div>
             </div>
             <aside class="note">
               <span class="note-title">Fala para ler</span>
-              <p>Como próximos passos, eu publicaria a API em nuvem, monitoraria drift de dados e de score, e criaria uma rotina periódica de revalidação e retreino.</p>
+              <p>Como próximos passos, eu publicaria a API em nuvem, acompanharia se os dados mudam com o tempo e criaria uma rotina periódica de revalidação e retreino.</p>
             </aside>
           </div>
           <footer class="footer">
             <span>Entrega: GitHub + vídeo STAR</span>
-            <span>8 / 8</span>
+            <span></span>
           </footer>
         </div>
       </section>
@@ -801,9 +842,9 @@
             <div class="links">
               <a class="link-button" href="../README.md" target="_blank">README <span>visão geral</span></a>
               <a class="link-button" href="../reports/model_comparison.md" target="_blank">Comparação final <span>resultados</span></a>
-              <a class="link-button" href="../docs/business_cost_analysis.md" target="_blank">Análise de custo <span>threshold</span></a>
+              <a class="link-button" href="../docs/business_cost_analysis.md" target="_blank">Análise de custo <span>ponto de corte</span></a>
               <a class="link-button" href="../src/tech_challenge/models/mlp.py" target="_blank">MLP <span>arquitetura</span></a>
-              <a class="link-button" href="../src/tech_challenge/models/train_mlp.py" target="_blank">Treino MLP <span>early stopping</span></a>
+              <a class="link-button" href="../src/tech_challenge/models/train_mlp.py" target="_blank">Treino MLP <span>parada antecipada</span></a>
               <a class="link-button" href="../src/tech_challenge/api/app.py" target="_blank">FastAPI <span>/health e /predict</span></a>
             </div>
             <aside class="note">
@@ -813,7 +854,7 @@
           </div>
           <footer class="footer">
             <span>Dica: use Alt+Tab ou abas do navegador para alternar</span>
-            <span>Extra</span>
+            <span></span>
           </footer>
         </div>
       </section>
