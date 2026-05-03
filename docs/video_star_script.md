@@ -178,3 +178,45 @@ Tela:
 ## Frase curta se o tempo estiver acabando
 
 > Em resumo, o projeto entrega um fluxo completo: dados, experimentos, MLP, API, testes e documentacao. A MLP foi escolhida nao por acuracia, mas por melhor PR-AUC e menor custo esperado no threshold operacional de 0.25.
+
+## Texto corrido para ler no video
+
+Ola, eu sou o Marcello, e este e o meu projeto do Tech Challenge Fase 01.
+
+Neste trabalho eu desenvolvi uma solucao completa para previsao de churn em telecom. A ideia e ajudar uma empresa a identificar quais clientes tem maior risco de cancelamento, para conseguir agir antes e priorizar campanhas de retencao.
+
+O dataset escolhido foi o Telco Customer Churn. Ele tem 7.043 registros e 21 colunas na base bruta, com informacoes de perfil, contrato, servicos e cobranca. A variavel alvo e `Churn`, ou seja, se o cliente cancelou ou nao.
+
+Uma decisao importante foi olhar para o problema como negocio, nao so como tecnica. Eu considerei que falso negativo custa mais caro que falso positivo. Ou seja, deixar passar um cliente que realmente ia cancelar e pior do que abordar um cliente que talvez nao cancelasse. Por isso, alem das metricas tradicionais, tambem fiz uma analise de custo por threshold.
+
+Na primeira etapa, fiz a exploracao dos dados. Analisei tamanho da base, tipos das colunas, valores ausentes, duplicados, distribuicao da target e variaveis importantes. Tambem tratei `TotalCharges`, que vinha como texto, e removi `customerID`, porque ele e apenas um identificador.
+
+Na EDA, alguns sinais ficaram bem claros. Clientes com contrato `Month-to-month`, internet `Fiber optic` e pagamento por `Electronic check` aparecem com maior risco de churn. Isso ja ajuda a pensar em acoes de retencao mais direcionadas.
+
+Depois da EDA, montei os baselines com `DummyClassifier`, `LogisticRegression` e `RandomForestClassifier`. Usei pipeline de preprocessamento com imputacao, padronizacao das variaveis numericas e one-hot encoding para as categoricas. Tambem usei seed fixa e validacao cruzada estratificada para deixar o processo reproduzivel.
+
+Os experimentos foram rastreados com MLflow, registrando parametros, metricas e artefatos.
+
+Na etapa principal, implementei uma MLP em PyTorch. A rede tem duas camadas ocultas, com 64 e 32 neuronios, ativacao ReLU, dropout de 0.2 e saida binaria. Usei `BCEWithLogitsLoss` com ponderacao da classe positiva, porque existe desbalanceamento. O treino tambem usa batching e early stopping.
+
+Para avaliar os modelos, acompanhei PR-AUC, ROC-AUC, F1, precision, recall e accuracy. A metrica principal foi PR-AUC, porque neste problema a classe positiva, que e o cliente com churn, e a mais importante.
+
+Nos resultados, a regressao logistica foi um baseline bem forte, com PR-AUC de 0.6334 e ROC-AUC de 0.8419. A MLP ficou levemente acima, com PR-AUC de 0.6348 e ROC-AUC de 0.8429.
+
+Mas o ponto mais importante foi a analise de custo. Usei uma hipotese simples: falso positivo custa 20 reais e falso negativo custa 200 reais. Com isso, varri diferentes thresholds e encontrei o melhor ponto de operacao.
+
+No threshold operacional de 0.25, a MLP teve custo esperado de 13.780, enquanto a regressao logistica ficou em 14.380 no melhor threshold dela. Entao, escolhi a MLP como modelo final porque ela teve o melhor PR-AUC e o menor custo esperado, mais alinhado com o objetivo de retencao.
+
+Depois do treinamento, integrei o modelo em uma API com FastAPI. A API tem `/health`, para verificar se o servico esta pronto, e `/predict`, para receber os dados de um cliente e retornar probabilidade de churn, classe prevista, threshold e versao do modelo.
+
+Tambem usei Pydantic para validar a entrada, logging estruturado com request id e latencia, e garanti que a API usa o mesmo preprocessador salvo no treino. Isso evita treinar de um jeito e fazer inferencia de outro.
+
+Para fechar a parte de engenharia, escrevi testes automatizados. Tem teste de smoke do treino, teste de schema com Pandera e teste dos endpoints da API. Tambem deixei comandos no Makefile para rodar lint, testes, EDA, treino, API e MLflow.
+
+Na documentacao, o projeto tem README, ML Canvas, Model Card, analise de custo, arquitetura de deploy e plano de monitoramento. No Model Card, deixei claro o uso pretendido, limitacoes, possiveis vieses e cenarios em que o modelo nao deveria ser usado.
+
+Como limitacoes, eu destacaria tres pontos. Primeiro, o custo usado na analise e uma hipotese e deveria ser ajustado com dados reais. Segundo, nao foi feita validacao temporal. Terceiro, o modelo precisaria de monitoramento em producao para acompanhar drift de dados, mudanca nos scores e queda de performance.
+
+Como proximo passo, eu publicaria a API em nuvem, adicionaria monitoramento continuo e criaria uma rotina periodica de revalidacao e retreino.
+
+Entao, resumindo, o projeto entrega um fluxo completo: analise dos dados, baselines, MLP em PyTorch, tracking com MLflow, API FastAPI, testes automatizados e documentacao. A escolha final da MLP foi baseada nao so em metrica tecnica, mas tambem no menor custo esperado para o problema de churn.
