@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cola de gravação - Tech Challenge Churn</title>
+    <style>
+      :root {
+        --bg: #0c111a;
+        --card: #121b29;
+        --line: rgba(224, 233, 245, 0.16);
+        --text: #f8fafc;
+        --muted: #afbdd0;
+        --teal: #00a88f;
+        --blue: #2f80ed;
+        --amber: #c9861a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(0, 168, 143, 0.12), transparent 34%),
+          var(--bg);
+        color: var(--text);
+        font-family: "Aptos", "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 42px 0 80px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 22px 0 20px;
+        background: linear-gradient(180deg, rgba(12, 17, 26, 0.98), rgba(12, 17, 26, 0.88));
+        backdrop-filter: blur(18px);
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        line-height: 1;
+      }
+
+      .intro {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.55;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      nav a {
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #e8f2ff;
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.95rem;
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .card {
+        margin-top: 22px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(18, 27, 41, 0.86);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      }
+
+      .eyebrow {
+        margin-bottom: 8px;
+        color: var(--teal);
+        font-size: 0.92rem;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 18px;
+        font-size: clamp(1.75rem, 3vw, 2.45rem);
+        line-height: 1.08;
+      }
+
+      .talk {
+        color: #f4f8fc;
+        font-size: clamp(1.16rem, 2.2vw, 1.45rem);
+        line-height: 1.55;
+      }
+
+      .show {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border-left: 4px solid var(--amber);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #d8e4f2;
+        font-size: 1.05rem;
+        line-height: 1.45;
+      }
+
+      .cut {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.98rem;
+        font-weight: 850;
+      }
+
+      strong {
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Cola de gravação</h1>
+        <p class="intro">
+          Deixe esta página no monitor secundário. No monitor grande, grave apenas o
+          <strong>video_slides.html</strong>. A ideia é você falar natural, sem ler palavra por palavra.
+        </p>
+        <nav aria-label="Atalhos da cola">
+          <a href="#s1">1 Capa</a>
+          <a href="#s2">2 Contexto</a>
+          <a href="#s3">3 Objetivo</a>
+          <a href="#s4">4 EDA</a>
+          <a href="#s5">5 Modelos</a>
+          <a href="#s6">6 MLP</a>
+          <a href="#s7">7 Resultados</a>
+          <a href="#s8">8 API</a>
+          <a href="#s9">9 Fechamento</a>
+          <a href="#s10">10 Evidências</a>
+        </nav>
+      </header>
+
+      <article class="card" id="s1">
+        <p class="eyebrow">Slide 1 - Capa</p>
+        <h2>Abertura</h2>
+        <p class="talk">
+          Oi, pessoal. Neste projeto eu trabalhei com previsão de churn em telecom.
+          A ideia foi montar uma solução completa, desde a análise dos dados até uma
+          API pronta para receber dados de um cliente e devolver o risco de cancelamento.
+        </p>
+        <p class="show">Mostre só a capa. Fala calma e já passa para o contexto.</p>
+        <p class="cut">Tempo sugerido: 20 a 30 segundos.</p>
+      </article>
+
+      <article class="card" id="s2">
+        <p class="eyebrow">Slide 2 - Contexto</p>
+        <h2>Problema de negócio</h2>
+        <p class="talk">
+          O problema é simples: quando um cliente cancela, a empresa perde receita.
+          Então o objetivo é antecipar esse risco. Usei o dataset Telco Customer Churn,
+          com 7.043 registros, e a variável que eu queria prever era o Churn, ou seja,
+          se o cliente cancelou ou não.
+        </p>
+        <p class="show">Se quiser, abra o README rapidamente para mostrar objetivo e dataset.</p>
+        <p class="cut">Tempo sugerido: 30 segundos.</p>
+      </article>
+
+      <article class="card" id="s3">
+        <p class="eyebrow">Slide 3 - Objetivo</p>
+        <h2>Projeto de ponta a ponta</h2>
+        <p class="talk">
+          A entrega não era só treinar um modelo. Eu organizei um pipeline completo:
+          análise dos dados, modelos de comparação, rede neural em PyTorch, registro
+          dos experimentos, API, testes e documentação. A métrica principal foi PR-AUC,
+          porque aqui interessa muito acertar a classe de clientes com risco de churn.
+        </p>
+        <p class="show">Mostre a estrutura do repositório e depois volte para os slides.</p>
+        <p class="cut">Tempo sugerido: 35 segundos.</p>
+      </article>
+
+      <article class="card" id="s4">
+        <p class="eyebrow">Slide 4 - EDA</p>
+        <h2>Análise inicial</h2>
+        <p class="talk">
+          Na EDA eu conferi tipos de colunas, dados ausentes, duplicados e a distribuição
+          do churn. Também tratei o TotalCharges, que vinha como texto, e removi o
+          customerID porque ele é só um identificador. Alguns sinais apareceram bem:
+          contrato mensal, fiber optic e pagamento por electronic check.
+        </p>
+        <p class="show">Mostre um gráfico em reports ou o notebook de EDA, sem demorar.</p>
+        <p class="cut">Tempo sugerido: 35 a 40 segundos.</p>
+      </article>
+
+      <article class="card" id="s5">
+        <p class="eyebrow">Slide 5 - Modelos de comparação</p>
+        <h2>Baselines</h2>
+        <p class="talk">
+          Antes da rede neural, eu treinei modelos de comparação. Usei um DummyClassifier
+          como referência mínima, uma regressão logística como baseline forte e um Random
+          Forest como modelo não linear. Isso ajuda a não defender uma rede neural só por
+          ela ser mais complexa.
+        </p>
+        <p class="show">Abra train_baselines.py ou cite o MLflow como registro dos experimentos.</p>
+        <p class="cut">Tempo sugerido: 35 segundos.</p>
+      </article>
+
+      <article class="card" id="s6">
+        <p class="eyebrow">Slide 6 - MLP</p>
+        <h2>Rede neural</h2>
+        <p class="talk">
+          A MLP foi feita em PyTorch com duas camadas principais, de 64 e 32 neurônios,
+          ReLU e dropout de 0.2. O treino usa lotes, seed fixa e parada antecipada.
+          Isso deixa o processo mais controlado e evita continuar treinando quando o
+          modelo já parou de melhorar.
+        </p>
+        <p class="show">Mostre mlp.py para arquitetura e train_mlp.py para o treino.</p>
+        <p class="cut">Tempo sugerido: 40 segundos.</p>
+      </article>
+
+      <article class="card" id="s7">
+        <p class="eyebrow">Slide 7 - Resultado</p>
+        <h2>Métricas e custo</h2>
+        <p class="talk">
+          Nos resultados, a regressão logística foi bem forte, mas a MLP ficou um pouco
+          melhor em PR-AUC e ROC-AUC. O ponto principal foi a análise de custo: como falso
+          negativo é mais caro que falso positivo, o melhor ponto de corte não foi 0.5,
+          e sim 0.25. Com isso, a MLP teve o menor custo esperado.
+        </p>
+        <p class="show">Mostre reports/model_comparison.md e docs/business_cost_analysis.md.</p>
+        <p class="cut">Tempo sugerido: 45 segundos.</p>
+      </article>
+
+      <article class="card" id="s8">
+        <p class="eyebrow">Slide 8 - API e testes</p>
+        <h2>Entrega técnica</h2>
+        <p class="talk">
+          A API foi feita com FastAPI e tem os endpoints /health e /predict.
+          Ela valida a entrada, usa o mesmo pré-processamento do treino e retorna
+          probabilidade, classe, threshold e versão do modelo. Também deixei testes
+          automatizados e documentação para facilitar a reprodução.
+        </p>
+        <p class="show">Mostre src/tech_challenge/api/app.py e, se der, o terminal com pytest.</p>
+        <p class="cut">Tempo sugerido: 40 segundos.</p>
+      </article>
+
+      <article class="card" id="s9">
+        <p class="eyebrow">Slide 9 - Fechamento</p>
+        <h2>Conclusão</h2>
+        <p class="talk">
+          Então, resumindo, o projeto entrega um fluxo completo e reproduzível.
+          A escolha do modelo não foi baseada só em acurácia, mas em métrica adequada
+          e custo de negócio. Como próximos passos, eu publicaria a API, monitoraria
+          mudanças nos dados e criaria uma rotina de retreino.
+        </p>
+        <p class="show">Feche olhando para a câmera ou para o centro da tela. Não precisa correr.</p>
+        <p class="cut">Tempo sugerido: 30 a 40 segundos.</p>
+      </article>
+
+      <article class="card" id="s10">
+        <p class="eyebrow">Slide 10 - Evidências</p>
+        <h2>Parte de tela/código</h2>
+        <p class="talk">
+          Depois dos slides, grave cortes rápidos mostrando as evidências: README,
+          comparação de modelos, análise de custo, código da MLP, treino e API.
+          A regra é simples: abre, mostra a parte importante, explica uma decisão
+          e volta. Não precisa navegar o projeto inteiro.
+        </p>
+        <p class="show">Use Alt+Tab ou abas do navegador para alternar entre slides e arquivos.</p>
+        <p class="cut">Tempo sugerido: 40 a 60 segundos para os cortes finais.</p>
+      </article>
+    </main>
+  </body>
+</html>

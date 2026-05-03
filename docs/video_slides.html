@@ -6,20 +6,16 @@
     <title>Slides - Tech Challenge Churn</title>
     <style>
       :root {
-        --ink: #101217;
-        --muted: #aeb8c6;
-        --paper: #0b111a;
-        --white: #ffffff;
-        --line: rgba(219, 229, 242, 0.2);
-        --deep: #0b111a;
+        --bg: #0c111a;
+        --bg-soft: #111926;
+        --panel: rgba(20, 29, 43, 0.74);
+        --line: rgba(223, 232, 246, 0.18);
+        --text: #f8fafc;
+        --muted: #b7c3d4;
         --teal: #00a88f;
-        --blue: #1c5fd4;
-        --amber: #c47b16;
-        --soft-teal: #e8f6f2;
-        --soft-blue: #eaf0fb;
-        --soft-amber: #fff4df;
-        --radius: 8px;
-        --shadow: 0 22px 70px rgba(0, 0, 0, 0.26);
+        --blue: #2f80ed;
+        --amber: #c9861a;
+        --radius: 22px;
       }
 
       * {
@@ -29,13 +25,14 @@
       body {
         margin: 0;
         overflow: hidden;
-        background: var(--deep);
-        color: var(--white);
+        background: var(--bg);
+        color: var(--text);
         font-family: "Aptos", "Segoe UI", sans-serif;
       }
 
       a {
         color: inherit;
+        text-decoration: none;
       }
 
       .deck {
@@ -48,11 +45,12 @@
         position: absolute;
         inset: 0;
         display: none;
+        place-items: center;
         overflow: hidden;
+        padding: 110px clamp(90px, 7vw, 260px);
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
-          linear-gradient(135deg, #0d141f 0%, #090f17 50%, #0b111a 100%);
-        color: var(--white);
+          radial-gradient(circle at 74% 18%, rgba(0, 168, 143, 0.08), transparent 30%),
+          linear-gradient(135deg, #111a27 0%, #0b111a 48%, #080d14 100%);
       }
 
       .slide::before {
@@ -60,386 +58,262 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
-        background-size: 72px 72px;
-        opacity: 0.42;
+          linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+        background-size: 82px 82px;
+        opacity: 0.55;
       }
 
       .slide::after {
         content: "";
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(circle at 74% 22%, rgba(0, 168, 143, 0.09), transparent 30%),
-          linear-gradient(180deg, rgba(5, 9, 14, 0.1), rgba(5, 9, 14, 0.42));
+        background: linear-gradient(180deg, rgba(4, 8, 13, 0.1), rgba(4, 8, 13, 0.42));
       }
 
       .slide.active {
         display: grid;
       }
 
-      .slide.dark {
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
-          linear-gradient(135deg, #0d141f 0%, #090f17 50%, #0b111a 100%);
-        color: var(--white);
-      }
-
-      #network-canvas {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.24;
-      }
-
-      .brand {
-        position: absolute;
-        top: 42px;
-        right: 72px;
-        z-index: 3;
-        color: var(--white);
-        font-size: 1.35rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 0;
-      }
-
       .slide-inner {
         position: relative;
         z-index: 2;
-        width: min(2860px, calc(100vw - 180px));
-        height: calc(100vh - 132px);
-        margin: auto;
+        width: min(2080px, calc(100vw - 520px));
+        min-height: min(920px, calc(100vh - 230px));
         display: grid;
-        grid-template-rows: auto auto auto;
         align-content: center;
-        gap: 34px;
-      }
-
-      .cover .slide-inner {
-        align-content: end;
-        grid-template-rows: 1fr auto auto;
-        padding-bottom: 28px;
+        justify-items: center;
+        gap: 42px;
+        text-align: center;
       }
 
       .eyebrow {
-        margin: 0 0 10px;
-        color: #dce7ea;
-        font-size: 0.9rem;
-        font-weight: 800;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 0.9vw, 1.35rem);
+        font-weight: 900;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
       h1,
       h2 {
         margin: 0;
-        font-weight: 900;
-        letter-spacing: 0;
+        max-width: 1800px;
+        font-weight: 950;
+        letter-spacing: -0.055em;
+        line-height: 0.95;
       }
 
       h1 {
-        max-width: 920px;
-        color: var(--white);
-        font-size: clamp(3.4rem, 8vw, 7rem);
-        line-height: 0.96;
+        font-size: clamp(5.2rem, 5.8vw, 8.6rem);
       }
 
       h2 {
-        color: var(--white);
-        font-size: clamp(3.2rem, 3.2vw, 6.2rem);
-        line-height: 1.04;
+        font-size: clamp(4.2rem, 4.7vw, 7.4rem);
       }
 
       .subtitle {
-        max-width: 780px;
-        margin: 22px 0 0;
-        color: #e7edf3;
-        font-size: clamp(1.1rem, 2vw, 1.5rem);
-        line-height: 1.5;
+        max-width: 1180px;
+        margin: 0;
+        color: #dce6f1;
+        font-size: clamp(1.55rem, 1.35vw, 2.2rem);
+        line-height: 1.36;
       }
 
-      .rule {
-        width: min(900px, 100%);
-        height: 1px;
-        margin-top: 44px;
-        background: rgba(255, 255, 255, 0.74);
-      }
-
-      .content {
+      .bullets {
+        width: min(1500px, 100%);
+        margin: 0;
+        padding: 0;
         display: grid;
-        grid-template-columns: minmax(0, 1.28fr) minmax(560px, 0.72fr);
-        gap: 72px;
-        align-items: start;
-        min-height: 0;
+        gap: 18px;
+        list-style: none;
+        text-align: left;
       }
 
-      .single {
-        grid-template-columns: 1fr;
-      }
-
-      .stack {
-        display: grid;
-        grid-template-rows: auto auto;
-        gap: 28px;
-      }
-
-      .result-layout {
-        display: grid;
-        grid-template-rows: auto auto;
-        align-content: center;
-        gap: 44px;
-      }
-
-      .body-text {
-        color: #e8edf3;
-        font-size: clamp(1.2rem, 0.9vw, 1.58rem);
-        line-height: 1.58;
-      }
-
-      .body-text p {
-        margin: 0 0 18px;
-      }
-
-      .note,
-      .panel,
-      .metric,
-      .visual {
+      .bullets li {
+        position: relative;
+        padding: 24px 30px 24px 76px;
         border: 1px solid var(--line);
         border-radius: var(--radius);
-        background: rgba(18, 27, 39, 0.78);
-        box-shadow: var(--shadow);
-        color: var(--white);
-        backdrop-filter: blur(12px);
+        background: var(--panel);
+        color: #eef4fb;
+        font-size: clamp(1.45rem, 1.18vw, 2.05rem);
+        font-weight: 760;
+        line-height: 1.25;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
       }
 
-      .note {
-        align-self: start;
-        display: grid;
-        align-content: center;
-      }
-
-      .note {
-        padding: 28px 30px;
-        border-left: 5px solid var(--teal);
-      }
-
-      .note-title {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 0.92rem;
-        font-weight: 900;
-        color: #dce7ea;
-        text-transform: uppercase;
-      }
-
-      .note p {
-        margin: 0;
-        color: #eef4f7;
-        font-size: clamp(1.08rem, 0.78vw, 1.3rem);
-        line-height: 1.5;
-      }
-
-      .panel {
-        padding: 28px 30px;
-        display: grid;
-        align-content: center;
-      }
-
-      .panel h3 {
-        margin: 0 0 12px;
-        font-size: clamp(1.12rem, 0.82vw, 1.38rem);
-      }
-
-      .panel ul {
-        margin: 0;
-        padding-left: 20px;
-      }
-
-      .panel li {
-        margin: 0 0 8px;
-        font-size: clamp(1rem, 0.72vw, 1.18rem);
-      }
-
-      .links {
-        display: grid;
-        gap: 10px;
-      }
-
-      .link-button {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: center;
-        padding: 16px 18px;
-        border: 1px solid rgba(219, 229, 242, 0.22);
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.08);
-        color: #f7fbff;
-        font-weight: 800;
-        text-decoration: none;
-      }
-
-      .link-button span {
-        color: var(--muted);
-        font-size: 0.86rem;
-        font-weight: 700;
-      }
-
-      .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      .tag {
-        padding: 10px 15px;
-        border: 1px solid rgba(219, 229, 242, 0.26);
+      .bullets li::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 32px;
+        width: 16px;
+        height: 16px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
-        color: #f7fbff;
-        font-weight: 800;
+        background: var(--teal);
+        transform: translateY(-50%);
       }
 
-      .tag.teal {
-        border-color: rgba(0, 168, 143, 0.62);
-        background: rgba(0, 168, 143, 0.16);
+      .bullets li:nth-child(2)::before {
+        background: var(--blue);
       }
 
-      .tag.blue {
-        border-color: rgba(28, 95, 212, 0.62);
-        background: rgba(28, 95, 212, 0.18);
+      .bullets li:nth-child(3)::before {
+        background: var(--amber);
       }
 
-      .tag.amber {
-        border-color: rgba(196, 123, 22, 0.68);
-        background: rgba(196, 123, 22, 0.17);
+      .bullets li:nth-child(4)::before {
+        background: #d9e2ec;
       }
 
-      .metrics {
+      .chips,
+      .kpis,
+      .evidence-list {
+        width: min(1500px, 100%);
         display: grid;
+        gap: 18px;
+      }
+
+      .chips {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .chip,
+      .kpi,
+      .evidence-link {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.06);
+        color: #eef4fb;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+      }
+
+      .chip {
+        padding: 18px 20px;
+        font-size: clamp(1.1rem, 0.92vw, 1.48rem);
+        font-weight: 900;
+      }
+
+      .kpis {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
       }
 
-      .metric {
-        min-height: clamp(160px, 12vh, 220px);
-        padding: 28px 30px;
-        display: grid;
-        align-content: center;
+      .kpi {
+        padding: 30px 34px;
+        text-align: left;
       }
 
-      .metric strong {
+      .kpi strong {
         display: block;
         margin-bottom: 8px;
-        font-size: clamp(2.8rem, 2.45vw, 5.2rem);
+        color: var(--text);
+        font-size: clamp(3rem, 2.8vw, 5.2rem);
         line-height: 1;
       }
 
-      .metric span {
-        color: #c7d0dc;
-        font-weight: 800;
+      .kpi span {
+        color: var(--muted);
+        font-size: clamp(1.05rem, 0.9vw, 1.35rem);
+        font-weight: 900;
       }
 
-      .visual {
-        overflow: hidden;
-      }
-
-      .visual img {
-        display: block;
-        width: 100%;
-        max-height: 520px;
-        object-fit: contain;
-        padding: 10px;
-        background: #ffffff;
-      }
-
-      .visual figcaption {
-        padding: 12px 14px;
-        color: #c7d0dc;
-        font-weight: 800;
-      }
-
-      table {
-        width: 100%;
+      .mini-table {
+        width: min(1500px, 100%);
         border-collapse: collapse;
         overflow: hidden;
         border: 1px solid var(--line);
         border-radius: var(--radius);
-        background: rgba(5, 12, 22, 0.82);
-        box-shadow: var(--shadow);
-      }
-
-      th,
-      td {
-        padding: 22px 28px;
-        border-bottom: 1px solid var(--line);
+        background: rgba(8, 14, 24, 0.74);
         text-align: left;
-        font-size: clamp(1.1rem, 0.72vw, 1.28rem);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
       }
 
-      th {
-        background: rgba(255, 255, 255, 0.08);
-        font-weight: 900;
+      .mini-table th,
+      .mini-table td {
+        padding: 24px 32px;
+        border-bottom: 1px solid var(--line);
+        font-size: clamp(1.18rem, 1vw, 1.58rem);
       }
 
-      tr:last-child td {
+      .mini-table th {
+        background: rgba(255, 255, 255, 0.075);
+        color: #f7fbff;
+        font-weight: 950;
+      }
+
+      .mini-table tr:last-child td {
         border-bottom: 0;
       }
 
-      .footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        color: #c7d0dc;
-        font-size: clamp(1rem, 0.62vw, 1.15rem);
-        font-weight: 700;
+      .evidence-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .footer span:first-child {
-        max-width: 72%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .evidence-link {
+        display: flex;
+        justify-content: space-between;
+        gap: 22px;
+        align-items: center;
+        padding: 24px 28px;
+        text-align: left;
+        font-size: clamp(1.25rem, 1vw, 1.6rem);
+        font-weight: 950;
+      }
+
+      .evidence-link span {
+        color: var(--muted);
+        font-size: clamp(0.95rem, 0.8vw, 1.18rem);
+        font-weight: 850;
+      }
+
+      .footer {
+        position: fixed;
+        left: 56px;
+        bottom: 36px;
+        z-index: 10;
+        color: rgba(225, 234, 245, 0.72);
+        font-size: 0.98rem;
+        font-weight: 850;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
 
       .controls {
         position: fixed;
-        right: 28px;
-        bottom: 24px;
+        right: 34px;
+        bottom: 28px;
         z-index: 20;
         display: flex;
         align-items: center;
         gap: 10px;
         padding: 8px;
-        border: 1px solid rgba(20, 28, 40, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.16);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.92);
-        box-shadow: 0 12px 36px rgba(8, 15, 32, 0.18);
-        backdrop-filter: blur(12px);
+        background: rgba(240, 245, 251, 0.94);
+        box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(14px);
       }
 
       .controls button {
         display: grid;
         place-items: center;
-        width: 38px;
-        height: 38px;
+        width: 42px;
+        height: 42px;
         border: 0;
         border-radius: 999px;
         background: #101827;
-        color: var(--white);
-        font-size: 1.25rem;
+        color: #ffffff;
+        font-size: 1.35rem;
         cursor: pointer;
       }
 
       .counter {
-        min-width: 62px;
+        min-width: 76px;
+        color: #101827;
         text-align: center;
-        color: #172033;
-        font-weight: 900;
+        font-weight: 950;
       }
 
       .progress {
@@ -448,8 +322,8 @@
         right: 0;
         bottom: 0;
         z-index: 19;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.32);
+        height: 6px;
+        background: rgba(255, 255, 255, 0.26);
       }
 
       .progress-bar {
@@ -458,7 +332,7 @@
         background: linear-gradient(90deg, var(--teal), var(--blue), var(--amber));
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: 1100px) {
         body {
           overflow: auto;
         }
@@ -470,6 +344,7 @@
         .slide {
           position: relative;
           min-height: 100vh;
+          padding: 72px 28px 110px;
         }
 
         .slide:not(.active) {
@@ -477,392 +352,234 @@
         }
 
         .slide-inner {
-          width: min(100% - 32px, 1180px);
-          height: auto;
-          min-height: calc(100vh - 96px);
-          padding: 42px 0 78px;
+          width: 100%;
+          min-height: calc(100vh - 190px);
         }
 
-        .content,
-        .metrics {
+        .chips,
+        .kpis,
+        .evidence-list {
           grid-template-columns: 1fr;
         }
 
         h1 {
-          font-size: clamp(3.2rem, 16vw, 4.8rem);
+          font-size: clamp(4rem, 17vw, 6rem);
         }
 
-        .brand {
-          top: 24px;
-          right: 24px;
+        h2 {
+          font-size: clamp(3rem, 13vw, 5.2rem);
         }
 
-        .controls {
-          right: 14px;
-          bottom: 14px;
+        .footer {
+          left: 28px;
+          bottom: 28px;
         }
       }
     </style>
   </head>
   <body>
     <div class="deck" aria-live="polite">
-      <section class="slide dark cover active" data-title="Capa">
-        <canvas id="network-canvas" aria-hidden="true"></canvas>
-        <div class="brand">POS TECH</div>
+      <section class="slide active" data-title="Capa">
         <div class="slide-inner">
-          <div></div>
-          <div>
-            <p class="eyebrow">Tech Challenge - Fase 01</p>
-            <h1>Previsão de Churn</h1>
-            <p class="subtitle">Um projeto completo para identificar clientes com risco de cancelamento e apoiar ações de retenção em telecom.</p>
-            <div class="rule"></div>
-          </div>
-          <div class="footer" style="color: #dce7ea">
-            <span>Marcello</span>
-            <span>Vídeo de apresentação - até 5 minutos</span>
+          <p class="eyebrow">Tech Challenge - Fase 01</p>
+          <h1>Previsão de Churn</h1>
+          <p class="subtitle">Pipeline de machine learning para identificar clientes com risco de cancelamento em telecom.</p>
+          <div class="chips" aria-label="Escopo do projeto">
+            <div class="chip">PyTorch</div>
+            <div class="chip">MLflow</div>
+            <div class="chip">FastAPI</div>
+            <div class="chip">Testes</div>
           </div>
         </div>
       </section>
 
       <section class="slide" data-title="Contexto">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">Contexto</p>
-            <h2>Problema de negócio</h2>
-          </header>
-          <div class="content">
-            <div class="body-text stack">
-              <div>
-              <p>Uma operadora de telecom precisa identificar clientes com maior risco de cancelamento para priorizar ações de retenção.</p>
-              <p>O dataset escolhido foi o Telco Customer Churn, com 7.043 registros e 21 colunas na base bruta. A variável alvo é <strong>Churn</strong>.</p>
-              </div>
-              <div class="tag-list">
-                <span class="tag teal">Alvo: Churn</span>
-                <span class="tag blue">7.043 registros</span>
-                <span class="tag amber">21 colunas</span>
-                <span class="tag">Classificação binária</span>
-              </div>
-            </div>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>O projeto começa com uma pergunta simples: quais clientes têm mais chance de cancelar? A ideia é usar o modelo para ajudar a empresa a agir antes, com campanhas de retenção mais bem direcionadas.</p>
-            </aside>
-          </div>
-          <footer class="footer">
-            <span>Mostre: README - objetivo e dataset</span>
-            <span></span>
-          </footer>
+          <p class="eyebrow">Contexto</p>
+          <h2>Problema de negócio</h2>
+          <ul class="bullets">
+            <li>Cliente que cancela gera perda direta de receita.</li>
+            <li>A empresa precisa priorizar quem tem maior risco de churn.</li>
+            <li>Base Telco Customer Churn: 7.043 registros e 21 colunas.</li>
+            <li>Variável alvo: Churn, uma classificação binária.</li>
+          </ul>
         </div>
       </section>
 
       <section class="slide" data-title="Objetivo">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">Objetivo</p>
-            <h2>Construir o projeto de ponta a ponta</h2>
-          </header>
-          <div class="content">
-            <div class="stack">
-              <div class="metrics">
-                <div class="metric">
-                  <strong>PR-AUC</strong>
-                  <span>Métrica principal</span>
-                </div>
-                <div class="metric">
-                  <strong>FN &gt; FP</strong>
-                  <span>Hipótese de custo</span>
-                </div>
-                <div class="metric">
-                  <strong>0.25</strong>
-                  <span>Ponto de corte escolhido</span>
-                </div>
-              </div>
-              <div class="panel">
-                <h3>Escopo entregue</h3>
-                <ul>
-                  <li>Análise dos dados, ML Canvas e modelos de comparação.</li>
-                  <li>Rede neural em PyTorch com parada antecipada.</li>
-                  <li>Registro dos experimentos, API, testes e documentação.</li>
-                </ul>
-              </div>
+          <p class="eyebrow">Objetivo</p>
+          <h2>Projeto de ponta a ponta</h2>
+          <div class="kpis">
+            <div class="kpi">
+              <strong>PR-AUC</strong>
+              <span>Métrica principal</span>
             </div>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>O objetivo foi montar uma solução completa e reproduzível. A métrica principal foi PR-AUC, porque aqui o mais importante é identificar bem os clientes com risco de churn.</p>
-            </aside>
+            <div class="kpi">
+              <strong>FN &gt; FP</strong>
+              <span>Hipótese de custo</span>
+            </div>
+            <div class="kpi">
+              <strong>0.25</strong>
+              <span>Ponto de corte final</span>
+            </div>
           </div>
-          <footer class="footer">
-            <span>Mostre: estrutura do repo e README</span>
-            <span></span>
-          </footer>
+          <ul class="bullets">
+            <li>EDA, ML Canvas e modelos de comparação.</li>
+            <li>Rede neural em PyTorch com treino reproduzível.</li>
+            <li>API, testes, documentação e análise de custo.</li>
+          </ul>
         </div>
       </section>
 
       <section class="slide" data-title="EDA">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">O que foi feito</p>
-            <h2>EDA e sinais de churn</h2>
-          </header>
-          <div class="content">
-            <div class="body-text stack">
-              <div>
-              <p>Na análise inicial, eu olhei os tipos das colunas, valores ausentes, duplicados, distribuição do churn e variáveis importantes.</p>
-              <p>Foram tratados <strong>TotalCharges</strong>, que vinha como texto, e <strong>customerID</strong>, removido da modelagem por ser apenas identificador.</p>
-              </div>
-              <div class="panel">
-                <h3>Sinais fortes</h3>
-                <ul>
-                  <li>Contrato Month-to-month.</li>
-                  <li>Internet Fiber optic.</li>
-                  <li>Pagamento por Electronic check.</li>
-                </ul>
-              </div>
-            </div>
-            <figure class="visual">
-              <img src="../reports/eda_contract_churn.png" alt="Churn por contrato" />
-              <figcaption>Churn por tipo de contrato</figcaption>
-            </figure>
-          </div>
-          <footer class="footer">
-            <span>Depois abra: notebooks/01_eda_baselines.ipynb ou reports/</span>
-            <span></span>
-          </footer>
+          <p class="eyebrow">Dados</p>
+          <h2>EDA e sinais de churn</h2>
+          <ul class="bullets">
+            <li>TotalCharges foi convertido e tratado corretamente.</li>
+            <li>customerID foi removido por ser apenas identificador.</li>
+            <li>Contratos mensais apareceram com maior risco.</li>
+            <li>Fiber optic e Electronic check também chamaram atenção.</li>
+          </ul>
         </div>
       </section>
 
-      <section class="slide" data-title="Modelos de comparação">
+      <section class="slide" data-title="Baselines">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">O que foi feito</p>
-            <h2>Modelos de comparação</h2>
-          </header>
-          <div class="content">
-            <div class="body-text stack">
-              <div>
-              <p>Antes da rede neural, eu treinei modelos de comparação: <strong>DummyClassifier</strong>, <strong>LogisticRegression</strong> e <strong>RandomForestClassifier</strong>.</p>
-              <p>O tratamento dos dados usa preenchimento de valores, padronização de variáveis numéricas, codificação das categóricas, seed fixa e validação estratificada.</p>
-              </div>
-              <div class="panel">
-                <h3>Por que isso importa?</h3>
-                <ul>
-                  <li>Cria uma comparação justa antes da rede neural.</li>
-                  <li>Evita defender um modelo mais complexo sem referência.</li>
-                  <li>Deixa os experimentos registrados no MLflow.</li>
-                </ul>
-              </div>
-            </div>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>Antes de defender a rede neural, eu precisava ver se ela realmente fazia sentido. Por isso esses modelos de comparação são importantes: eles mostram se a MLP trouxe algum ganho de verdade.</p>
-            </aside>
-          </div>
-          <footer class="footer">
-            <span>Depois abra: src/tech_challenge/models/train_baselines.py</span>
-            <span></span>
-          </footer>
+          <p class="eyebrow">Modelos</p>
+          <h2>Comparação antes da MLP</h2>
+          <ul class="bullets">
+            <li>DummyClassifier como referência mínima.</li>
+            <li>LogisticRegression como baseline forte e simples.</li>
+            <li>RandomForestClassifier como comparação não linear.</li>
+            <li>Todos os experimentos foram registrados com MLflow.</li>
+          </ul>
         </div>
       </section>
 
       <section class="slide" data-title="MLP">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">O que foi feito</p>
-            <h2>Rede neural em PyTorch</h2>
-          </header>
-          <div class="content">
-            <div class="stack">
-              <div class="metrics">
-                <div class="metric">
-                  <strong>64</strong>
-                  <span>Primeira camada</span>
-                </div>
-                <div class="metric">
-                  <strong>32</strong>
-                  <span>Segunda camada</span>
-                </div>
-                <div class="metric">
-                  <strong>0.2</strong>
-                  <span>Dropout</span>
-                </div>
-              </div>
-              <figure class="visual" style="margin: 0">
-                <img src="../reports/mlp_artifacts/training_history.png" alt="Histórico de treino da MLP" />
-                <figcaption>Histórico de treino da MLP</figcaption>
-              </figure>
+          <p class="eyebrow">Rede neural</p>
+          <h2>MLP em PyTorch</h2>
+          <div class="kpis">
+            <div class="kpi">
+              <strong>64</strong>
+              <span>Primeira camada</span>
             </div>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>A rede neural tem duas camadas principais, usa ReLU, dropout e uma função de erro adequada para classificação binária. O treino foi feito em lotes e com parada antecipada para evitar treinar além do necessário.</p>
-            </aside>
+            <div class="kpi">
+              <strong>32</strong>
+              <span>Segunda camada</span>
+            </div>
+            <div class="kpi">
+              <strong>0.2</strong>
+              <span>Dropout</span>
+            </div>
           </div>
-          <footer class="footer">
-            <span>Depois abra: src/tech_challenge/models/mlp.py e train_mlp.py</span>
-            <span></span>
-          </footer>
+          <ul class="bullets">
+            <li>Treino em lotes, seed fixa e validação estratificada.</li>
+            <li>Parada antecipada para reduzir overfitting.</li>
+            <li>Checkpoint do melhor modelo para usar na API.</li>
+          </ul>
         </div>
       </section>
 
       <section class="slide" data-title="Resultados">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">Resultado</p>
-            <h2>Resultados e custo</h2>
-          </header>
-          <div class="content single result-layout">
-            <table>
-              <thead>
-                <tr>
-                  <th>Modelo</th>
-                  <th>PR-AUC</th>
-                  <th>ROC-AUC</th>
-                  <th>Recall</th>
-                  <th>Melhor custo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>MLP PyTorch</strong></td>
-                  <td>0.6348</td>
-                  <td>0.8429</td>
-                  <td>0.9091</td>
-                  <td><strong>13.780</strong></td>
-                </tr>
-                <tr>
-                  <td>Logistic Regression</td>
-                  <td>0.6334</td>
-                  <td>0.8419</td>
-                  <td>0.7059</td>
-                  <td>14.380</td>
-                </tr>
-                <tr>
-                  <td>Random Forest</td>
-                  <td>0.6055</td>
-                  <td>0.8171</td>
-                  <td>0.6578</td>
-                  <td>17.060</td>
-                </tr>
-              </tbody>
-            </table>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>A regressão logística foi bem forte, mas a MLP ficou um pouco melhor nas métricas principais. O que decidiu mesmo foi o custo: usando o ponto de corte 0.25, a MLP teve o menor custo esperado.</p>
-            </aside>
-          </div>
-          <footer class="footer">
-            <span>Depois abra: reports/model_comparison.md e docs/business_cost_analysis.md</span>
-            <span></span>
-          </footer>
+          <p class="eyebrow">Resultado</p>
+          <h2>Métrica e custo</h2>
+          <table class="mini-table">
+            <thead>
+              <tr>
+                <th>Modelo</th>
+                <th>PR-AUC</th>
+                <th>ROC-AUC</th>
+                <th>Recall</th>
+                <th>Custo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MLP PyTorch</strong></td>
+                <td>0.6348</td>
+                <td>0.8429</td>
+                <td>0.9091</td>
+                <td><strong>13.780</strong></td>
+              </tr>
+              <tr>
+                <td>Logistic Regression</td>
+                <td>0.6334</td>
+                <td>0.8419</td>
+                <td>0.7059</td>
+                <td>14.380</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="bullets">
+            <li>A MLP ficou levemente melhor e teve menor custo esperado.</li>
+          </ul>
         </div>
       </section>
 
       <section class="slide" data-title="API">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">O que foi feito</p>
-            <h2>API, testes e documentação</h2>
-          </header>
-          <div class="content">
-            <div class="stack">
-              <div class="metrics">
-                <div class="metric">
-                  <strong>/health</strong>
-                  <span>Status do serviço</span>
-                </div>
-                <div class="metric">
-                  <strong>/predict</strong>
-                  <span>Inferência</span>
-                </div>
-                <div class="metric">
-                  <strong>4 passed</strong>
-                  <span>Testes</span>
-                </div>
-              </div>
-              <div class="panel">
-                <h3>Documentos finais</h3>
-                <ul>
-                  <li>README, Model Card e ML Canvas.</li>
-                  <li>Análise de custo e arquitetura de publicação da API.</li>
-                  <li>Plano de monitoramento e roteiro do vídeo.</li>
-                </ul>
-              </div>
+          <p class="eyebrow">Entrega técnica</p>
+          <h2>API, testes e docs</h2>
+          <div class="kpis">
+            <div class="kpi">
+              <strong>/health</strong>
+              <span>Status da API</span>
             </div>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>A API usa FastAPI, valida a entrada, carrega o mesmo tratamento de dados usado no treino e retorna probabilidade, classe, ponto de corte e versão do modelo. Também tem testes automatizados e logs estruturados.</p>
-            </aside>
+            <div class="kpi">
+              <strong>/predict</strong>
+              <span>Predição de churn</span>
+            </div>
+            <div class="kpi">
+              <strong>4</strong>
+              <span>Testes passando</span>
+            </div>
           </div>
-          <footer class="footer">
-            <span>Depois abra: src/tech_challenge/api/app.py e terminal com pytest</span>
-            <span></span>
-          </footer>
+          <ul class="bullets">
+            <li>FastAPI com validação de entrada e logging estruturado.</li>
+            <li>Mesmo pipeline de pré-processamento no treino e na API.</li>
+            <li>README, Model Card, monitoramento e arquitetura de deploy.</li>
+          </ul>
         </div>
       </section>
 
       <section class="slide" data-title="Fechamento">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">Fechamento</p>
-            <h2>Fechamento</h2>
-          </header>
-          <div class="content">
-            <div class="body-text stack">
-              <div>
-              <p>O projeto entrega um fluxo completo: análise dos dados, modelos de comparação, rede neural em PyTorch, registro de experimentos, API, testes automatizados e documentação.</p>
-              <p>A escolha da MLP foi baseada não só em métrica técnica, mas também no menor custo esperado para o problema de churn.</p>
-              </div>
-              <div class="panel">
-                <h3>Limitações e próximos passos</h3>
-                <ul>
-                  <li>Custo de negócio ainda é hipótese.</li>
-                  <li>Não houve validação temporal.</li>
-                  <li>Próximo passo: publicar a API, monitorar e retreinar periodicamente.</li>
-                </ul>
-              </div>
-            </div>
-            <aside class="note">
-              <span class="note-title">Fala para ler</span>
-              <p>Como próximos passos, eu publicaria a API em nuvem, acompanharia se os dados mudam com o tempo e criaria uma rotina periódica de revalidação e retreino.</p>
-            </aside>
-          </div>
-          <footer class="footer">
-            <span>Entrega: GitHub + vídeo STAR</span>
-            <span></span>
-          </footer>
+          <p class="eyebrow">Fechamento</p>
+          <h2>O que eu defenderia</h2>
+          <ul class="bullets">
+            <li>O projeto é reproduzível e segue um fluxo profissional.</li>
+            <li>A escolha do modelo considera métrica técnica e custo.</li>
+            <li>A solução já está preparada para servir predições por API.</li>
+            <li>Próximo passo: publicar, monitorar drift e retreinar.</li>
+          </ul>
         </div>
       </section>
 
-      <section class="slide" data-title="Abrir evidencias">
+      <section class="slide" data-title="Evidências">
         <div class="slide-inner">
-          <header>
-            <p class="eyebrow">Depois dos slides</p>
-            <h2>Abrir código e evidências</h2>
-          </header>
-          <div class="content">
-            <div class="links">
-              <a class="link-button" href="../README.md" target="_blank">README <span>visão geral</span></a>
-              <a class="link-button" href="../reports/model_comparison.md" target="_blank">Comparação final <span>resultados</span></a>
-              <a class="link-button" href="../docs/business_cost_analysis.md" target="_blank">Análise de custo <span>ponto de corte</span></a>
-              <a class="link-button" href="../src/tech_challenge/models/mlp.py" target="_blank">MLP <span>arquitetura</span></a>
-              <a class="link-button" href="../src/tech_challenge/models/train_mlp.py" target="_blank">Treino MLP <span>parada antecipada</span></a>
-              <a class="link-button" href="../src/tech_challenge/api/app.py" target="_blank">FastAPI <span>/health e /predict</span></a>
-            </div>
-            <aside class="note">
-              <span class="note-title">Como usar</span>
-              <p>Use esta tela como cola para gravar os cortes finais. Clique em um item, mostre rapidamente o arquivo, explique uma decisão e volte para os slides.</p>
-            </aside>
+          <p class="eyebrow">Depois dos slides</p>
+          <h2>Abrir evidências</h2>
+          <div class="evidence-list">
+            <a class="evidence-link" href="../README.md" target="_blank">README <span>visão geral</span></a>
+            <a class="evidence-link" href="../reports/model_comparison.md" target="_blank">Resultados <span>comparação</span></a>
+            <a class="evidence-link" href="../docs/business_cost_analysis.md" target="_blank">Custo <span>ponto de corte</span></a>
+            <a class="evidence-link" href="../src/tech_challenge/models/mlp.py" target="_blank">MLP <span>arquitetura</span></a>
+            <a class="evidence-link" href="../src/tech_challenge/models/train_mlp.py" target="_blank">Treino <span>early stopping</span></a>
+            <a class="evidence-link" href="../src/tech_challenge/api/app.py" target="_blank">API <span>/health e /predict</span></a>
           </div>
-          <footer class="footer">
-            <span>Dica: use Alt+Tab ou abas do navegador para alternar</span>
-            <span></span>
-          </footer>
         </div>
       </section>
     </div>
 
+    <div class="footer">Tech Challenge - Churn Pipeline</div>
     <div class="controls" aria-label="Controles dos slides">
       <button type="button" id="prev" aria-label="Slide anterior">‹</button>
-      <span class="counter" id="counter">1 / 9</span>
+      <span class="counter" id="counter">1 / 10</span>
       <button type="button" id="next" aria-label="Próximo slide">›</button>
     </div>
     <div class="progress"><div class="progress-bar" id="progress"></div></div>
@@ -902,62 +619,6 @@
       const hashMatch = window.location.hash.match(/slide-(\d+)/);
       if (hashMatch) showSlide(Number(hashMatch[1]) - 1);
       else showSlide(0);
-
-      const canvas = document.getElementById("network-canvas");
-      const ctx = canvas.getContext("2d");
-      const palette = ["#00a88f", "#1c5fd4", "#c47b16", "#d7dde6"];
-      let points = [];
-
-      function resizeNetwork() {
-        const ratio = window.devicePixelRatio || 1;
-        canvas.width = Math.floor(canvas.clientWidth * ratio);
-        canvas.height = Math.floor(canvas.clientHeight * ratio);
-        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-        points = Array.from({ length: Math.max(44, Math.floor(canvas.clientWidth / 18)) }, () => ({
-          x: Math.random() * canvas.clientWidth,
-          y: Math.random() * canvas.clientHeight,
-          vx: (Math.random() - 0.5) * 0.28,
-          vy: (Math.random() - 0.5) * 0.28,
-          r: 2 + Math.random() * 4,
-          color: palette[Math.floor(Math.random() * palette.length)]
-        }));
-      }
-
-      function drawNetwork() {
-        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-        for (let i = 0; i < points.length; i++) {
-          const a = points[i];
-          a.x += a.vx;
-          a.y += a.vy;
-          if (a.x < 0 || a.x > canvas.clientWidth) a.vx *= -1;
-          if (a.y < 0 || a.y > canvas.clientHeight) a.vy *= -1;
-
-          for (let j = i + 1; j < points.length; j++) {
-            const b = points[j];
-            const distance = Math.hypot(a.x - b.x, a.y - b.y);
-            if (distance < 150) {
-              ctx.globalAlpha = (1 - distance / 150) * 0.35;
-              ctx.strokeStyle = a.color;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(a.x, a.y);
-              ctx.lineTo(b.x, b.y);
-              ctx.stroke();
-            }
-          }
-
-          ctx.globalAlpha = 0.72;
-          ctx.fillStyle = a.color;
-          ctx.beginPath();
-          ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        requestAnimationFrame(drawNetwork);
-      }
-
-      window.addEventListener("resize", resizeNetwork);
-      resizeNetwork();
-      drawNetwork();
     </script>
   </body>
 </html>
