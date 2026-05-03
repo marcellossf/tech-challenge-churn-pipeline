@@ -23,6 +23,35 @@ python -m pytest
 python -m uvicorn tech_challenge.api.app:app --reload
 ```
 
+## Formato recomendado de gravacao
+
+Voce pode gravar de tres formas:
+
+- Tela + voz: funciona bem se voce preferir nao aparecer. O mais importante e mostrar evidencias reais do projeto e explicar as decisoes com seguranca.
+- Tela + webcam pequena: e o formato mais recomendado. Mostre sua cara no canto da tela, principalmente na abertura e no fechamento, sem cobrir codigo, tabelas ou terminal.
+- Camera no inicio e no fim: boa alternativa se a webcam atrapalhar durante a navegacao. Comece olhando para a camera por alguns segundos, depois compartilhe a tela, e volte para a camera no fechamento.
+
+Minha recomendacao:
+
+Use tela compartilhada com webcam pequena no canto superior direito ou inferior direito. Deixe a webcam aparecendo nos primeiros 15 segundos e no fechamento. Durante codigo, graficos e testes, ela pode continuar pequena, desde que nao cubra resultados.
+
+Cuidados simples que deixam o video melhor:
+
+- Grave em um lugar silencioso e teste o microfone antes.
+- Fale um pouco mais devagar do que em conversa normal.
+- Use zoom do navegador ou do editor para o texto ficar legivel.
+- Nao tente ler tudo. Use o roteiro como trilho e fale com naturalidade.
+- Antes de gravar valendo, faca um ensaio cronometrado.
+- Evite mostrar dados pessoais, abas abertas ou notificacoes.
+- Se errar uma frase, continue. O avaliador quer clareza, nao perfeicao de apresentacao.
+
+Ferramentas possiveis:
+
+- OBS Studio, se quiser mais controle.
+- Zoom, Google Meet ou Teams gravando a propria reuniao.
+- PowerPoint ou Loom, se voce preferir algo mais simples.
+- Gravador de tela do Windows, se ja estiver acostumado.
+
 ## 0:00 a 0:15 - Abertura
 
 Fala sugerida:
